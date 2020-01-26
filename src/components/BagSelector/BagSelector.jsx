@@ -27,7 +27,7 @@ export default function Input({ disabled = false, errorMessage, value, handleCha
           <SCBagSelectorInputContainer>
 
             <SCBagSelectorInputLeft>
-              <SCBagSelectorInputIcon src={IconMinus} onClick={() => handleChange({ target: { value: (value > 0 ? value - 1 : 0) } })}>
+              <SCBagSelectorInputIcon src={IconMinus} onClick={() => !disabled && handleChange({ target: { value: (value > 0 ? value - 1 : 0) } })}>
               </SCBagSelectorInputIcon>
 
             </SCBagSelectorInputLeft>
@@ -35,7 +35,7 @@ export default function Input({ disabled = false, errorMessage, value, handleCha
             <SCBagSelectorInputValue disabled={true} value={value} onChange={handleChange}></SCBagSelectorInputValue>
 
             <SCBagSelectorInputRight>
-              <SCBagSelectorInputIcon src={IconPlus} onClick={() => handleChange({ target: { value: value + 1 } })}>
+              <SCBagSelectorInputIcon src={IconPlus} onClick={() => !disabled && handleChange({ target: { value: value + 1 } })}>
               </SCBagSelectorInputIcon>
             </SCBagSelectorInputRight>
 

@@ -90,4 +90,10 @@ export const SCBagSelectorInputIcon = styled.img`
   color: rgb(95, 115, 140);
   width: 24px;
   height: 24px;
+  ${(props) =>
+    props.disabled 
+    && css`
+    opacity: 0.5;
+    `
+  }  
 `;
