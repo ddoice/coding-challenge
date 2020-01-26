@@ -1,8 +1,9 @@
 import React, { Suspense } from "react";
 import { Route, Switch } from "react-router-dom";
 import ErrorBoundary from "../ErrorBoundary/ErrorBoundary";
-import NewCustomer from "../NewCustomer/NewCustomer"
-import Home from "../Home/Home"
+
+const NewCustomer = React.lazy(() => import("../NewCustomer/NewCustomer"));
+const Home = React.lazy(() => import("../Home/Home"));
 
 function App() {
   return (
