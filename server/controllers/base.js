@@ -19,7 +19,7 @@ class BaseController {
                 if (err) {
                     res.send(err);
                 }
-                res.json(data);
+                res.json({ data });
             } catch (err) {
                 next(err)
             }
