@@ -4,6 +4,8 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
 const mongoose = require("./db/mongoose");
+const debug = require('debug')('server:app');
+
 
 const routers = {
   index: require('./routes/index'),
@@ -27,6 +29,7 @@ app.use(`${REACT_APP_API_PREFIX}/customer`, routers.customers);
 // error handler
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
+  debug(err);
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
   res.status(err.status || 500);
