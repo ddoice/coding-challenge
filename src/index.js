@@ -7,13 +7,13 @@ import App from './containers/App/App';
 import * as serviceWorker from './serviceWorker';
 
 const Root = () => (
-    <Provider store={store}>
-        <Router >
-            <Switch>
-                <Route path="/" component={App} />
-            </Switch>
-        </Router>
-    </Provider>
+  <Provider store={store}>
+    <Router >
+      <Switch>
+        <Route path="/" component={App} />
+      </Switch>
+    </Router>
+  </Provider>
 );
 
 ReactDOM.render(<Root></Root>, document.getElementById('root'));
