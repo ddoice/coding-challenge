@@ -13,22 +13,30 @@ class CustomerController extends BaseController {
 
     // #TODO investigate, exposing internal MongoDB _id, it's a good idea?
     getCustomer(...args) {
-        const { id } = args.params;
+        const [req] = args;
+        const { params } = req;
+        const { id } = params;
         this.model.find({ _id: id }, this.responseHandler(...args))
     }
 
     addNewCustomer(...args) {
-        const newCustomer = new Customer(req.body);
+        const [req] = args;
+        const { body } = req;
+        const newCustomer = new this.model(body);
         newCustomer.save(this.responseHandler(...args));
     }
 
     updateCustomer(...args) {
-        const { id } = args.params;
-        this.model.updateOne({ _id: id }, req.body, { new: true }, this.responseHandler(...args));
+        const [req] = args;
+        const { params, body } = req;
+        const { id } = params;
+        this.model.updateOne({ _id: id }, body, { new: true, runValidators: true, }, this.responseHandler(...args));
     }
 
     deleteCustomer(...args) {
-        const { id } = args.params;
+        const [req] = args;
+        const { params } = req;
+        const { id } = params;
         this.model.deleteOne({ _id: id }, this.responseHandler(...args));
     }
 
