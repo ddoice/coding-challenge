@@ -8,11 +8,13 @@ import BagSelector from '../../components/BagSelector/BagSelector';
 import Button from '../../components/Button/Button';
 import Header from '../../components/Header/Header';
 import Alert from '../../components/Alert/Alert';
+import ButtonFixed from '../../components/ButtonFixed/ButtonFixed'
 import { SCNewCustomerContainer, SCNewCustomerForm } from './styles';
+import IconBack from './IconBack.svg'
 
 class NewCustomer extends Component {
 
-  state = { name: '', bags: 1, errorMessages: {}, forceDisable: false, registerSuccess : false }
+  state = { name: '', bags: 1, errorMessages: {}, forceDisable: false, registerSuccess: false }
 
   handleChange = (name) => ({ target }) => {
     const { value } = target
@@ -25,9 +27,9 @@ class NewCustomer extends Component {
     await addCustomer({ name, bags })
       .then(_ => {
         this.setState({ forceDisable: true, registerSuccess: true });
-        setTimeout(()=>{
+        setTimeout(() => {
           this.props.history.push('/')
-        }, 2000);        
+        }, 2000);
       })
       .catch(_ => {
 
@@ -65,16 +67,19 @@ class NewCustomer extends Component {
     const { loading, error } = customers;
     console.log(this.props.customers);
     return (
-      <SCNewCustomerContainer>
-        <SCNewCustomerForm>
-          <Header>New customer</Header>
-          <Input disabled={forceDisable || loading} placeHolder="Type your name" handleChange={this.handleChange('name')} value={this.state.name} errorMessage={errorMessages.name}></Input>
-          <BagSelector disabled={forceDisable || loading} handleChange={this.handleChange('bags')} errorMessage={errorMessages.bags} value={this.state.bags}></BagSelector>
-          {!registerSuccess && <Button disabled={forceDisable || loading || disabled} message="Register" callback={this.handleSaveCustomer}></Button>}
-          {error && <Header>{error}</Header>}
-          {registerSuccess && <Alert>Registro completado!</Alert>}
-        </SCNewCustomerForm>
-      </SCNewCustomerContainer>
+      <div>
+        <SCNewCustomerContainer>
+          <SCNewCustomerForm>
+            <Header>New customer</Header>
+            <Input disabled={forceDisable || loading} placeHolder="Type your name" handleChange={this.handleChange('name')} value={this.state.name} errorMessage={errorMessages.name}></Input>
+            <BagSelector disabled={forceDisable || loading} handleChange={this.handleChange('bags')} errorMessage={errorMessages.bags} value={this.state.bags}></BagSelector>
+            {!registerSuccess && <Button disabled={forceDisable || loading || disabled} message="Register" callback={this.handleSaveCustomer}></Button>}
+            {error && <Header>{error}</Header>}
+            {registerSuccess && <Alert>Registro completado!</Alert>}
+          </SCNewCustomerForm>
+        </SCNewCustomerContainer>
+        <ButtonFixed img={IconBack} linkTo="/"></ButtonFixed>
+      </div>
     )
   }
 }
