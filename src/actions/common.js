@@ -28,7 +28,7 @@ const isSuccess = (args) => {
 const isError = (args) => {
   const { type, ...rest } = args;
   return ({
-    type: `${type}_ERROR`,
+    type: `${type}_FAILURE`,
     ...rest
   });
 }
@@ -43,7 +43,14 @@ const fetcher = (url, options = {}) => fetch(url, {
   headers: {
     'Content-Type': 'application/json'
   }
-}).then(res => res.json());
+}).then(async (res) => {
+  if (res.status === 200) {
+    return res.json()
+  } else {
+    const data = await res.json();
+    throw new Error(data.message)
+  }
+});
 
 
 export {
