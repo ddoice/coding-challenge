@@ -17,7 +17,7 @@ class BaseController {
         return (err, data) => {
             try {
                 if (err) {
-                    res.send(err);
+                    res.status(500).send(err);
                 }
                 res.json({ data });
             } catch (err) {
