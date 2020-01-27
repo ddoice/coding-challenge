@@ -39,10 +39,10 @@ export const addCustomer = (body) => async (dispatch) => {
       method: 'POST',
       body: JSON.stringify(body)
     });
-    dispatch(isSuccess({ type, data, body, id: data.id }));
+    return dispatch(isSuccess({ type, data, body, id: data.id }));
   } catch (error) {
     console.log('error:', error)
-    dispatch(isError({ type, error }));
+    return dispatch(isError({ type, error }));
   }
 };
 
