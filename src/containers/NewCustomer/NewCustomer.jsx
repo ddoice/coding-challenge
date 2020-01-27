@@ -25,7 +25,11 @@ class NewCustomer extends Component {
     const { name, bags } = this.state;
     const { addCustomer } = this.props;
     await addCustomer({ name, bags })
-      .then(_ => {
+      .then(data => {
+        if (data.error) {
+          throw new Error(data.error);
+        }
+        // #TODO refactor to use and dispatch an AdHoc action to redirect to home
         this.setState({ forceDisable: true, registerSuccess: true });
         setTimeout(() => {
           this.props.history.push('/')
@@ -74,8 +78,8 @@ class NewCustomer extends Component {
             <Input disabled={forceDisable || loading} placeHolder="Type your name" handleChange={this.handleChange('name')} value={this.state.name} errorMessage={errorMessages.name}></Input>
             <BagSelector disabled={forceDisable || loading} handleChange={this.handleChange('bags')} errorMessage={errorMessages.bags} value={this.state.bags}></BagSelector>
             {!registerSuccess && <Button disabled={forceDisable || loading || disabled} message="Register" callback={this.handleSaveCustomer}></Button>}
-            {error && <Header>{error}</Header>}
-            {registerSuccess && <Alert>Registro completado!</Alert>}
+            {error && <Alert type="danger">{error}</Alert>}
+            {registerSuccess && <Alert>Register completed</Alert>}
           </SCNewCustomerForm>
         </SCNewCustomerContainer>
         <ButtonFixed img={IconBack} linkTo="/"></ButtonFixed>

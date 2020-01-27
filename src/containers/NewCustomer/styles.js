@@ -18,7 +18,8 @@ export const SCNewCustomerContainer = styled.div`
   margin-bottom: 224px;
   margin-top: 72px;
   flex-flow: row wrap;
-  padding: 0px 16px;  
+  padding: 0px 16px;
+  min-height: 500px;
 `;
 
 export const SCNewCustomerForm = styled.div`
@@ -26,4 +27,5 @@ margin-left: auto;
 margin-right: auto;
 width: 456px;
 display: block;
+min-height: 500px;
 `;
