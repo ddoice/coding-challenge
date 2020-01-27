@@ -17,7 +17,10 @@ class BaseController {
         return (err, data) => {
             try {
                 if (err) {
-                    res.status(500).send(err);
+                    const error = new Error(err.message)
+                    // #TODO it should flag as safe errors only validation errors
+                    err.safe = true;
+                    throw err
                 }
                 res.json({ data });
             } catch (err) {
