@@ -26,7 +26,7 @@ class Home extends Component {
         </SCHomeBackground>
 
         <SCHomeCardsContainer>
-          {data.map(customer => <CardCustomer name={customer.name} bags={customer.bags}></CardCustomer>)}
+          {data.map((customer, index) => <CardCustomer key={index} name={customer.name} bags={customer.bags}></CardCustomer>)}
         </SCHomeCardsContainer>
 
         <ButtonFixed img={IconPlus} linkTo="/new" ></ButtonFixed>
