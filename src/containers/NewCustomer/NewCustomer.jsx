@@ -50,7 +50,7 @@ class NewCustomer extends Component {
   }
 
   invalidBags = (bags) => {
-    return bags < 1 ? "Choose at least 1 bag." : bags > 9 ? "Please choose max 5 bags." : false;
+    return bags < 1 ? "Choose at least 1 bag." : bags > 5 ? "Please choose max 5 bags." : false;
   }
 
   isInvalid = () => {
