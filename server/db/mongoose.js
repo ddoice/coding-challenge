@@ -14,7 +14,7 @@ module.exports = {
                     "Error: Could not connect to MongoDB. Did you forget to run `mongod`?",
                     err
                 );
-                debug("Yo need a MongoDB to run this app: docker run -d -p 27017:27017 -v ~/data:/data/db mongo")
+                debug("You need a MongoDB to run this app: docker run -d -p 27017:27017 -v ~/data:/data/db mongo")
             })
             .on("open", () => {
                 debug("Connection extablised with MongoDB");
